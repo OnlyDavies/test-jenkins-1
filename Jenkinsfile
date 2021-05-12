@@ -25,14 +25,14 @@ pipeline {
         stage('TestApp') {
             steps {
             	sh '''
-            		bash -c "source ${WORKSPACE}/entorno_virtual/bin/activate &&  cd scripts/src && ${WORKSPACE}/entorno_virtual/bin/python ${WORKSPACE}/entorno_virtual/bin/pytest && cd .. && cd .."
+            		bash -c "source ${WORKSPACE}/entorno_virtual/bin/activate && ${WORKSPACE}/entorno_virtual/bin/pytest"
                 '''
             }
         }  
         stage('RunApp') {
             steps {
             	sh '''
-            		bash -c "source entorno_virtual/bin/activate ; ${WORKSPACE}/entorno_virtual/bin/python scripts/src/main.py &"
+            		bash -c "source entorno_virtual/bin/activate ; ${WORKSPACE}/entorno_virtual/bin/python ${WORKSPACE}/scripts/src/main.py &"
                 '''
             }
         } 
